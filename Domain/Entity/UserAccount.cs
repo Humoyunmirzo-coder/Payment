@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Payment.Domain.Enititys
 {
 	public  class UserAccount 
 	{
+		[Key]
 		 public int  Id { get; set; }
 		public string CardNamber { get; set; }
 		public string CardValidData { get; set; }

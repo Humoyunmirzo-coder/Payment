@@ -10,8 +10,9 @@ namespace Aplication.Service
 {
 	public  interface IUserAccaountService : IRepository<UserAccount>
  	{
-		Task <string> GetUserAccamountAsync (string username, string password);
-		Task<IEnumerable<object>> GetById();
+		Task <string> GetUserAccamountAsync (string username);
+		Task<IEnumerable<UserAccount>> GetAllAccount();
+		Task<IEnumerable<object>> GetById( int id);
 		
 	}
 }

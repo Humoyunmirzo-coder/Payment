@@ -5,6 +5,7 @@ namespace Payment.Infrastructure.Data
 {
 	public class ServerDbcontext : DbContext
 	{
+
 		public ServerDbcontext() { }
 		public ServerDbcontext(DbContextOptions<ServerDbcontext> options) : base(options) { }
 		public DbSet<UserAccount> Users { get; set; }

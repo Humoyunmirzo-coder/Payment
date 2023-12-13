@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Domain.Enititys
 {
-	public  class UserAccount 
+	public class UserAccount
 	{
 		[Key]
-		 public int  Id { get; set; }
+		public int Id { get; set; }
 		public string CardNamber { get; set; }
 		public string CardValidData { get; set; }
 		public string TotalBalance { get; set; }
-	    public   ICollection<UserTransoction> UserTransoctions { get; set; }
+		
+		public virtual ICollection<UserTransoction> UserTransoctions { get; set; }
 	}
 }

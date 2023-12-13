@@ -19,7 +19,7 @@ namespace Payment
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-		
+			builder.Services.AddScoped<IUserAccountService>();
 			builder.Services.AddDbContext<ServerDbcontext>(options =>
 		options.UseNpgsql(builder.Configuration.GetConnectionString("AZServicesConfugretion")));
 

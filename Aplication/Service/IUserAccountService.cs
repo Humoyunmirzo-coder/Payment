@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Aplication.Service
 {
-	public  interface IUserAccaountService : IRepository<UserAccount>
+	public  interface IUserAccountService : IRepository<UserAccount>
  	{
 		Task <string> GetUserAccamountAsync (string username);
-		Task<IEnumerable<UserAccount>> GetAllAccount();
-		Task<IEnumerable<object>> GetById( int id);
+		Task<IEnumerable<UserAccount>> GetAllAccountAsync();
+		Task<UserAccount> GetByIdAsync( int id);
 		
 	}
 }

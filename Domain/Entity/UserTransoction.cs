@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Domain.Enititys
 {
-	public  class UserTransoction
+	public class UserTransoction
 	{
 
 		[Key]
@@ -16,10 +12,11 @@ namespace Payment.Domain.Enititys
 		public string TransactionDate { get; set; }
 		public string Amaunt { get; set; }
 		public bool Result { get; set; }
-		public UserAccount UserAccountId { get; set; }
+		public double  UserAccountId { get; set; }
 		public string AaymentServise { get; set; }
 		public string SendorId { get; set; }
-		public ICollection<UserAccount> UserAccounts { get; set; }
+
+		public virtual ICollection<UserAccount> UserAccounts { get; set; }
 
 
 	}

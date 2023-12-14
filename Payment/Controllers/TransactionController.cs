@@ -25,7 +25,7 @@ namespace Payment.Controllers
 			IEnumerable<TransactionDto> transoctions = (await _userTransactionService.GetAllAsync())
 				.Select(x => new TransactionDto
 				{
-					Id = x.Id,
+				
 					Result = x.Result,
 					Amaunt	= x.Amaunt,
 					SendorId = x.SendorId,
@@ -33,7 +33,7 @@ namespace Payment.Controllers
 					UserAccounts = x.UserAccounts,
 					UserAccountId = x.UserAccountId,
 					PaymentServise = x.PaymentServise,
-					TransactionDate = x.TransactionDate,
+				    Date = x.Date,
 
 				});
 			return new( transoctions);
@@ -44,7 +44,7 @@ namespace Payment.Controllers
 			UserTransoction transoction = await _userTransactionService.GetByIdAsync(Id);
 			var transactionEntity = new TransactionDto
 			{
-				Id = transoction.Id,
+			
 				Result = transoction.Result,
 				Amaunt = transoction.Amaunt,
 				SendorId = transoction.SendorId,
@@ -52,14 +52,15 @@ namespace Payment.Controllers
 				UserAccounts = transoction.UserAccounts,
 				UserAccountId = transoction.UserAccountId,
 				PaymentServise = transoction.PaymentServise,
-				TransactionDate = transoction.TransactionDate,
+				Date = transoction.Date,
+			
 
 			};
 			return new(transactionEntity);
 		}
 
 		[HttpPost]
-		public async Task<ResponsModel<TransactionDto>> CreateAsync(UserTransoction user)
+		public async Task<ResponsModel<TransactionDto>> CreateAsync(TransactionDto user)
 		{
 			UserTransoction account = await _userTransactionService.CreateAysnc(user);
 			var usertransactionEntity = new TransactionDto()
@@ -71,8 +72,8 @@ namespace Payment.Controllers
 				UserAccounts = account.UserAccounts,
 				UserAccountId = account.UserAccountId,
 				PaymentServise = account.PaymentServise,
-				TransactionDate = account.TransactionDate,
-			
+				Date = account.Date 
+
 			};
 			return new(usertransactionEntity);
 

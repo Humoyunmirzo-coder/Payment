@@ -1,4 +1,5 @@
 ﻿using Aplication.Service;
+using Domain.Dto;
 using Microsoft.EntityFrameworkCore;
 using Payment.Domain.Enititys;
 using Payment.Infrastructure.Data;
@@ -24,6 +25,11 @@ namespace Infrastructure.Service
 			 _dbcontext.Transactions.Attach(transoction);
 			await _dbcontext.SaveChangesAsync();
 			return transoction;
+		}
+
+		public Task<UserTransoction> CreateAysnc(TransactionDto transoction)
+		{
+			throw new NotImplementedException();
 		}
 
 		public Task<IEnumerable<UserTransoction>> GetAllAsync()

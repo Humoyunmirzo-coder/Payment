@@ -1,4 +1,5 @@
 ﻿using Aplication.Repository;
+using Domain.Dto;
 using Payment.Domain.Enititys;
 
 namespace Aplication.Service
@@ -8,7 +9,7 @@ namespace Aplication.Service
 		Task<IEnumerable<UserTransoction>> GetTransactionsAsync();
 		Task<IEnumerable<object>> GetAllTransactionsAsync();
 		Task<IEnumerable<object>> GetByIdTransaction(int Id);
-		Task<UserTransoction> CreateAysnc( UserTransoction transoction);
+		Task<UserTransoction> CreateAysnc( TransactionDto transoction);
 
 	}
 }

@@ -29,7 +29,7 @@ namespace Payment.Controllers
 					   CardNamber = x.CardNamber,
 					   CardValidData = x.CardValidData,
 					   TotalBalance = x.TotalBalance,
-					 //  UserTransoctions = x.UserTransoctions,
+					   UserTransoctions = x.UserTransoctions,
 
 				   });
 			return  new  (userAccounts);
@@ -45,14 +45,14 @@ namespace Payment.Controllers
 				CardNamber = userAccount.CardNamber,
 				CardValidData = userAccount.CardValidData,
 				TotalBalance = userAccount.TotalBalance,
-				//UserTransoctions = userAccount.UserTransoctions,
+				UserTransoctions = userAccount.UserTransoctions,
 
 			};
 			return new (userAccountEntity);
 		}
 
 		[HttpPost] 
-		public async Task < ResponsModel < AccountDto >> CreateAsync( UserAccount user)
+		public async Task < ResponsModel < AccountDto >> CreateAsync( AccountDto user)
 		{
 			UserAccount account = await _userAccountService.CreateAsync(user);
 			var userAccountEntity = new AccountDto()
@@ -61,7 +61,7 @@ namespace Payment.Controllers
 				CardNamber = account.CardNamber,
 				CardValidData = account.CardValidData,
 				TotalBalance = account.TotalBalance,
-				//UserTransoctions = account.UserTransoctions
+				UserTransoctions = account.UserTransoctions
 			};	
 			return  new  (userAccountEntity);
 

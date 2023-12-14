@@ -1,5 +1,6 @@
 ﻿using Aplication.Repository;
 using Aplication.Service;
+using Domain.Dto;
 using Microsoft.EntityFrameworkCore;
 using Payment.Domain.Enititys;
 using Payment.Infrastructure.Data;
@@ -24,8 +25,14 @@ namespace Infrastructure.Service
 		public async Task<UserAccount> CreateAsync(UserAccount user)
 		{
 			_dbcontext.Users.Attach(user);
-			await  _dbcontext.SaveChangesAsync();
+			await _dbcontext.SaveChangesAsync();
 			return user;
+		}
+
+		public async Task<UserAccount> CreateAsync(AccountDto user1)
+		{
+			throw new NotImplementedException();
+			
 		}
 
 		public Task<IEnumerable<UserAccount>> GetAllAccountAsync()

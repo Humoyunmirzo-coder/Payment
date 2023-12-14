@@ -11,7 +11,6 @@ namespace Payment.Domain.Enititys
 		public int Id { get; set; }
 		public string CardNumber { get; set; }
 		public DateTime Date { get; set; } 
-
 		public string Amaunt { get; set; }
 		public bool Result { get; set; }
 		public double  UserAccountId { get; set; }

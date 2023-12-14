@@ -14,13 +14,18 @@ namespace Infrastructure.Service
 {
 	public class UserAccountService : IUserAccountService
 	{
-		private readonly IUserAccountService _userAccountService;
 		private readonly ServerDbcontext _dbcontext;
 
-		public UserAccountService(IUserAccountService userAccountService, ServerDbcontext dbcontext)
+		public UserAccountService( ServerDbcontext dbcontext)
 		{
-			_userAccountService = userAccountService;
 			_dbcontext = dbcontext;
+		}
+
+		public async Task<UserAccount> CreateAsync(UserAccount user)
+		{
+			_dbcontext.Users.Attach(user);
+			await  _dbcontext.SaveChangesAsync();
+			return user;
 		}
 
 		public Task<IEnumerable<UserAccount>> GetAllAccountAsync()

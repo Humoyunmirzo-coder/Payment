@@ -8,5 +8,7 @@ namespace Aplication.Service
 		Task<IEnumerable<UserTransoction>> GetTransactionsAsync();
 		Task<IEnumerable<object>> GetAllTransactionsAsync();
 		Task<IEnumerable<object>> GetByIdTransaction(int Id);
+		Task<UserTransoction> CreateAysnc( UserTransoction transoction);
+
 	}
 }

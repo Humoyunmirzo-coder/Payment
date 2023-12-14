@@ -7,6 +7,7 @@ namespace Payment.Domain.Enititys
 	{
 		[Key]
 		public int Id { get; set; }
+		public string UserId { get; set; }
 		public string CardNamber { get; set; }
 		public string CardValidData { get; set; }
 		public string TotalBalance { get; set; }

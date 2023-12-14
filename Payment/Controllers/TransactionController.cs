@@ -1,5 +1,6 @@
 ﻿using Aplication.Service;
 using Domain;
+using Domain.Dto;
 using Infrastructure.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,10 @@ namespace Payment.Controllers
 		}
 
 		[HttpGet] 
-		public async Task <ResponsModel<IEnumerable< UserTransoction>>> GetAllAsync()
+		public async Task <ResponsModel<IEnumerable< TransactionDto>>> GetAllAsync()
 		{
-			IEnumerable<UserTransoction> transoctions = (await _userTransactionService.GetAllAsync())
-				.Select(x => new UserTransoction
+			IEnumerable<TransactionDto> transoctions = (await _userTransactionService.GetAllAsync())
+				.Select(x => new TransactionDto
 				{
 					Id = x.Id,
 					Result = x.Result,
@@ -35,13 +36,13 @@ namespace Payment.Controllers
 					TransactionDate = x.TransactionDate,
 
 				});
-			return new ResponsModel<IEnumerable<UserTransoction>>( transoctions);
+			return new( transoctions);
 		}
 		[HttpGet ]
-		public async Task <ResponsModel <UserTransoction>> GetByIdAsync(int Id)
+		public async Task <ResponsModel <TransactionDto>> GetByIdAsync(int Id)
 		{
 			UserTransoction transoction = await _userTransactionService.GetByIdAsync(Id);
-			var transactionEntity = new UserTransoction
+			var transactionEntity = new TransactionDto
 			{
 				Id = transoction.Id,
 				Result = transoction.Result,
@@ -58,12 +59,11 @@ namespace Payment.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ResponsModel<UserTransoction>> CreateAsync(UserTransoction user)
+		public async Task<ResponsModel<TransactionDto>> CreateAsync(UserTransoction user)
 		{
 			UserTransoction account = await _userTransactionService.CreateAysnc(user);
-			var usertransactionEntity = new UserTransoction()
+			var usertransactionEntity = new TransactionDto()
 			{
-				Id= account.Id,
 				Result= account.Result,
 				Amaunt = account.Amaunt,
 				SendorId= account.SendorId,

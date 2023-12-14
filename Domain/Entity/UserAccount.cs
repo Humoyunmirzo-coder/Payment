@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Payment.Domain.Enititys
 {
@@ -11,7 +12,8 @@ namespace Payment.Domain.Enititys
 		public string CardNamber { get; set; }
 		public string CardValidData { get; set; }
 		public string TotalBalance { get; set; }
-		
-		public virtual ICollection<UserTransoction> UserTransoctions { get; set; }
+
+	//	[JsonIgnore]
+	 //	public virtual ICollection<UserTransoction> UserTransoctions { get; set; }
 	}
 }

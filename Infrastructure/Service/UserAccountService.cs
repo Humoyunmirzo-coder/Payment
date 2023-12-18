@@ -1,5 +1,7 @@
 ﻿using Aplication.Repository;
 using Aplication.Service;
+using Domain;
+using Domain.Dto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Payment.Domain.Enititys;
@@ -24,8 +26,7 @@ namespace Infrastructure.Service
 
 		public async  Task<IEnumerable<UserAccount>> GetAllAsync()
 		 {
-
-			return await  GetAllAsync();  //  Task.FromResult(Enumerable.Empty<UserAccount>());
+			 return await  _dbcontext.Users.ToListAsync();
 
 		}
 
@@ -40,16 +41,23 @@ namespace Infrastructure.Service
 			throw new NotImplementedException();
 		}
 
-		public async Task<bool> CreateAsync(UserAccount user)
-		{
-			_dbcontext.Users.Attach(user);
-			await _dbcontext.SaveChangesAsync();
-			return user != null ? true : false;
-		}
+	
+	
 
-		Task<UserAccount> IRepository<UserAccount>.GetByIdAsync(int Id)
+		public async Task<UserAccount> CreateAsync(UserAccount user)
 		{
-			throw new NotImplementedException();
+			 var  result = new AccountDto()
+			{
+
+				UserId = user.UserId,
+				CardNamber = user.CardNamber,
+				CardValidData = user.CardValidData,
+				TotalBalance = user.TotalBalance,
+				UserTransoctions = user.UserTransoctionids.Select(x => x.id).ToList(),
+			};
+
+			await _dbcontext.SaveChangesAsync();
+			return result;
 		}
 	}
 }

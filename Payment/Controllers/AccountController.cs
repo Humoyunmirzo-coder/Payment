@@ -17,52 +17,26 @@ namespace Payment.Controllers
 
 
 		[HttpGet]
-		public async Task<ResponsModel<IEnumerable<AccountDto>>> GetAllAsync()
+		public async Task<IEnumerable<UserAccount>> GetAllAsync()
 		{
-			IEnumerable<AccountDto> userAccounts = (await _userAccountService.GetAllAsync())
-				   .Select(x => new AccountDto
-				   {
-					   Id = x.Id,
-					   UserId = x.UserId,
-					   CardNamber = x.CardNamber,
-					   CardValidData = x.CardValidData,
-					   TotalBalance = x.TotalBalance,
-					   UserTransoctionids = x.UserTransoctions.Select(x => x.Id).ToList(),
-
-				   });
+			
 			var result = await _userAccountService.GetAllAsync();
-			return new ("Ok");
+			return result;
 		}
 		[HttpGet]
-		public async Task<ResponsModel<AccountDto>> GetByIdAsync(int Id)
+		public async Task<UserAccount> GetByIdAsync(int Id)
 		{
-			UserAccount userAccount = await _userAccountService.GetByIdAsync(Id);
-			var userAccountEntity = new AccountDto()
-			{
-				Id = userAccount.Id,
-				UserId = userAccount.UserId,
-				CardNamber = userAccount.CardNamber,
-				CardValidData = userAccount.CardValidData,
-				TotalBalance = userAccount.TotalBalance,
-				UserTransoctionids = userAccount.UserTransoctions.Select(x => x.Id).ToList(),
-
-			};
+	
 			var resul = await _userAccountService.GetByIdAsync(Id);
-			return new("Ok");
+			return  resul;
 		}
 
 		[HttpPost]
-		public async Task<ResponsModel<UserAccount>> CreateAsync(AccountDto user)
+		public async Task<UserAccount> CreateAsync(AccountDto user)
 		{
-			var userAccountEntity = new UserAccount()
-			{
-				UserId = user.UserId,
-				CardNamber = user.CardNamber,
-				CardValidData = user.CardValidData,
-				TotalBalance = user.TotalBalance,
-			};
-			var result = await _userAccountService.CreateAsync(userAccountEntity);
-			return new("Ok");
+		
+			var result = await _userAccountService.CreateAsync(user);
+			return   result;
 		}
 	}
 }

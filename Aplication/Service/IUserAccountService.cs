@@ -1,4 +1,5 @@
 ﻿using Aplication.Repository;
+using Domain;
 using Domain.Dto;
 using Payment.Domain.Enititys;
 using System;
@@ -14,7 +15,7 @@ namespace Aplication.Service
 		Task <string> GetUserAccamountAsync (string username);
 		Task<IEnumerable<UserAccount>> GetAllAccountAsync();
 		Task<UserAccount> GetByIdAsync( int id);
-		Task<bool> CreateAsync ( UserAccount user) ;
-		
+		Task<UserAccount> CreateAsync ( AccountDto user) ;
+		Task<IEnumerable<UserAccount>> GetAllAsync();
 	}
 }

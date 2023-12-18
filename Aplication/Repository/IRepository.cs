@@ -8,7 +8,7 @@ namespace Aplication.Repository
 {
 	public  interface IRepository <T>
 	{
-		Task<IEnumerable<T>> GetAllAsync();
-		Task<T> GetByIdAsync(int Id);
+		// Task<IEnumerable<T>> GetAllAsync();
+		//Task<T> GetByIdAsync(int Id);
 	}
 }

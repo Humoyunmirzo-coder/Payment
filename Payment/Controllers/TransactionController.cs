@@ -23,65 +23,27 @@ namespace Payment.Controllers
 		}
 
 		[HttpGet] 
-		public async Task <ResponsModel<IEnumerable< TransactionDto>>> GetAllAsync()
+		public async Task <IEnumerable< UserTransoction>> GetAllAsync()
 		{
-			IEnumerable<TransactionDto> transoctions = (await _userTransactionService.GetAllAsync())
-				.Select(x => new TransactionDto
-				{
-				
-					Result = x.Result,
-					Amaunt	= x.Amaunt,
-					SendorId = x.SendorId,
-					CardNumber = x.CardNumber,
-					UserAccountids = x.UserAccounts.Select(x=>x.Id).ToList(),
-					UserAccountId = x.UserAccountId,
-					PaymentServise = x.PaymentServise,
-				    Date = x.Date,
+			var result = await  _userTransactionService.GetAllAsync();
 
-				});
-		
-			return new( transoctions);
+			return result;
 		}
 		[HttpGet ]
-		public async Task <ResponsModel <TransactionDto>> GetByIdAsync(int Id)
+		public async Task  <UserTransoction> GetByIdAsync(int Id)
 		{
-			UserTransoction transoction = await _userTransactionService.GetByIdAsync(Id);
-			var transactionEntity = new TransactionDto
-			{
-			
-				Result = transoction.Result,
-				Amaunt = transoction.Amaunt,
-				SendorId = transoction.SendorId,
-				CardNumber = transoction.CardNumber,
-				UserAccountids = transoction.UserAccounts.Select(x=>x.Id).ToList(),
-				UserAccountId = transoction.UserAccountId,
-				PaymentServise = transoction.PaymentServise,
-				Date = transoction.Date,
-			
 
-			};
-			return new(transactionEntity);
+			var resul = await _userTransactionService.GetByIdAsync(Id);
+			return resul;
 		}
 
 		[HttpPost]
-		public async Task<ResponsModel<TransactionDto>> CreateAsync(TransactionDto user)
+		public async Task<TransactionDto> CreateAsync(TransactionDto user)
 		{
-			UserTransoction account = await _userTransactionService.CreateAysnc(user);
-			var usertransactionEntity = new TransactionDto()
-			{
-				Result= account.Result,
-				Amaunt = account.Amaunt,
-				SendorId= account.SendorId,
-				CardNumber= account.CardNumber,
-				UserAccountids = account.UserAccounts.Select(x=> x.Id).ToList	(),
-				UserAccountId = account.UserAccountId,
-				PaymentServise = account.PaymentServise,
-				Date = account.Date 
-				
-			};
+		
 			await  _serverDbcontext.SaveChangesAsync();
 		
-				return new  ResponsModel<TransactionDto>( usertransactionEntity);
+				return  usertransactionEntity;
 
 		}
 	}

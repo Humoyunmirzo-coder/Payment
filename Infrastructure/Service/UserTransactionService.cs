@@ -1,4 +1,5 @@
 ﻿using Aplication.Service;
+using Domain;
 using Domain.Dto;
 using Microsoft.EntityFrameworkCore;
 using Payment.Domain.Enititys;
@@ -20,11 +21,25 @@ namespace Infrastructure.Service
 			_dbcontext = dbcontext;
 		}
 
-		public  async Task<UserTransoction> CreateAysnc(UserTransoction transoction)
+		public async Task<UserTransoction> CreateAysnc(UserTransoction account)
 		{
-			 _dbcontext.Transactions.Attach(transoction);
-			await _dbcontext.SaveChangesAsync();
-			return transoction;
+		
+			var usertransactionEntity = new TransactionDto()
+			{
+				Result = account.Result,
+				Amaunt = account.Amaunt,
+				SendorId = account.SendorId,
+				CardNumber = account.CardNumber,
+				UserAccountId = account.UserAccountId,
+				PaymentServise = account.PaymentServise,
+				Date = account.Date,
+				UserAccountids = account.UserAccounts.Select(x => x.Id).ToList(),
+
+			};
+			_dbcontext.SaveChanges();
+			return  (usertransactionEntity);
+
+
 		}
 
 		public Task<UserTransoction> CreateAysnc(TransactionDto transoction)
@@ -38,23 +53,15 @@ namespace Infrastructure.Service
 			return Task.FromResult(Enumerable.Empty<UserTransoction>());
 		}
 
-		public Task<IEnumerable<object>> GetAllTransactionsAsync()
-		{
-			throw new NotImplementedException();
-		}
+		
 
-		public async Task<UserTransoction> GetByIdAsync(int Id)
+		public   async Task<UserTransoction> GetByIdAsync(int Id)
 		{
-			UserTransoction? entity = await  _dbcontext.Transactions.FindAsync(Id);
+			UserTransoction? entity = await _dbcontext.Transactions.FindAsync(Id);
 			return entity;
 		}
 
-		public Task<IEnumerable<object>> GetByIdTransaction(int Id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<IEnumerable<UserTransoction>> GetTransactionsAsync()
+		async Task<IEnumerable<TransactionDto>> IUserTransactionService.GetAllAsync()
 		{
 			throw new NotImplementedException();
 		}

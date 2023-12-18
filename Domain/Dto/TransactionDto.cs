@@ -10,7 +10,7 @@ namespace Domain.Dto
 {
 	public  class TransactionDto
 	{
-		public int Id { get; set; }
+		
 		public string CardNumber { get; set; }
 		public DateTime Date { get; set; } 
 		public string Amaunt { get; set; }
@@ -19,6 +19,6 @@ namespace Domain.Dto
 		public string PaymentServise { get; set; }
 		public string SendorId { get; set; }
  
-		public required ICollection<int> UserAccountids { get; set; }
+		public virtual  ICollection<int> UserAccountids { get; set; }
 	}
 }

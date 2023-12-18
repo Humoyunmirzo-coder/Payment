@@ -67,6 +67,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("PaymentServise")
                         .IsRequired()
                         .HasColumnType("text");
@@ -77,9 +80,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("SendorId")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("UserAccountId")
                         .HasColumnType("double precision");

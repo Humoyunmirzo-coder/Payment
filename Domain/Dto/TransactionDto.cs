@@ -19,6 +19,6 @@ namespace Domain.Dto
 		public string PaymentServise { get; set; }
 		public string SendorId { get; set; }
  
-		public required ICollection<UserAccount> UserAccounts { get; set; }
+		public required ICollection<int> UserAccountids { get; set; }
 	}
 }

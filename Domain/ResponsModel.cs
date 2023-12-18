@@ -10,9 +10,9 @@ namespace Domain
 	public  class ResponsModel <T>
 	{
 
-		public ResponsModel(T resilt, HttpStatusCode statusCode = HttpStatusCode.OK)
+		public ResponsModel(T result, HttpStatusCode statusCode = HttpStatusCode.OK)
 		{
-			Result = resilt;
+			Result = result;
 			StatusCode = statusCode;
 
 		}

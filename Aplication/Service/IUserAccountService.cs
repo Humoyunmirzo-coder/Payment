@@ -14,7 +14,7 @@ namespace Aplication.Service
 		Task <string> GetUserAccamountAsync (string username);
 		Task<IEnumerable<UserAccount>> GetAllAccountAsync();
 		Task<UserAccount> GetByIdAsync( int id);
-		Task<UserAccount> CreateAsync ( AccountDto user) ;
+		Task<bool> CreateAsync ( UserAccount user) ;
 		
 	}
 }

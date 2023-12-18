@@ -17,7 +17,7 @@ namespace Payment.Domain.Enititys
 		public string PaymentServise { get; set; }
 		public string SendorId { get; set; }
 
-		[JsonIgnore]
+	//	[JsonIgnore]
 		public virtual ICollection<UserAccount> UserAccounts { get; set; }
 
 

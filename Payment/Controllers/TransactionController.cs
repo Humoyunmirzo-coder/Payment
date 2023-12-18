@@ -5,6 +5,7 @@ using Infrastructure.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Payment.Domain.Enititys;
+using Payment.Infrastructure.Data;
 
 namespace Payment.Controllers
 {
@@ -13,10 +14,12 @@ namespace Payment.Controllers
 	public class TransactionController : ControllerBase
 	{
 		private readonly IUserTransactionService _userTransactionService;
+		private readonly ServerDbcontext _serverDbcontext;
 
-		public TransactionController(IUserTransactionService userTransactionService)
+		public TransactionController(IUserTransactionService userTransactionService, ServerDbcontext serverDbcontext)
 		{
 			_userTransactionService = userTransactionService;
+			_serverDbcontext = serverDbcontext;
 		}
 
 		[HttpGet] 
@@ -30,12 +33,13 @@ namespace Payment.Controllers
 					Amaunt	= x.Amaunt,
 					SendorId = x.SendorId,
 					CardNumber = x.CardNumber,
-					UserAccounts = x.UserAccounts,
+					UserAccountids = x.UserAccounts.Select(x=>x.Id).ToList(),
 					UserAccountId = x.UserAccountId,
 					PaymentServise = x.PaymentServise,
 				    Date = x.Date,
 
 				});
+		
 			return new( transoctions);
 		}
 		[HttpGet ]
@@ -49,7 +53,7 @@ namespace Payment.Controllers
 				Amaunt = transoction.Amaunt,
 				SendorId = transoction.SendorId,
 				CardNumber = transoction.CardNumber,
-				UserAccounts = transoction.UserAccounts,
+				UserAccountids = transoction.UserAccounts.Select(x=>x.Id).ToList(),
 				UserAccountId = transoction.UserAccountId,
 				PaymentServise = transoction.PaymentServise,
 				Date = transoction.Date,
@@ -69,13 +73,15 @@ namespace Payment.Controllers
 				Amaunt = account.Amaunt,
 				SendorId= account.SendorId,
 				CardNumber= account.CardNumber,
-				UserAccounts = account.UserAccounts,
+				UserAccountids = account.UserAccounts.Select(x=> x.Id).ToList	(),
 				UserAccountId = account.UserAccountId,
 				PaymentServise = account.PaymentServise,
 				Date = account.Date 
-
+				
 			};
-			return new(usertransactionEntity);
+			await  _serverDbcontext.SaveChangesAsync();
+		
+				return new  ResponsModel<TransactionDto>( usertransactionEntity);
 
 		}
 	}

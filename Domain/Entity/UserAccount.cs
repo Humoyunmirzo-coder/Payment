@@ -13,7 +13,7 @@ namespace Payment.Domain.Enititys
 		public string CardValidData { get; set; }
 		public string TotalBalance { get; set; }
 
-	[JsonIgnore]
+	//[JsonIgnore]
 	 	public virtual ICollection<UserTransoction> UserTransoctions { get; set; }
 	}
 }

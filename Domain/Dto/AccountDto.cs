@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Dto
 {
-	public  class AccountDto
+	public  class AccountDto  
 	{
 		public int Id { get; set; }
 		public string UserId { get; set; }
@@ -16,6 +16,6 @@ namespace Domain.Dto
 		public string CardValidData { get; set; }
 		public string TotalBalance { get; set; }
 
-		public required ICollection<UserTransoction> UserTransoctions { get; set; }
+		public required ICollection<int> UserTransoctionids { get; set; }
 	}
 }

@@ -36,6 +36,7 @@ namespace Payment.Controllers
 		{
 		
 			var result = await _userAccountService.CreateAsync(user);
+
 			return   result;
 		}
 	}

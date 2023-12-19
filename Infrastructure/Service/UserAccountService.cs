@@ -44,7 +44,7 @@ namespace Infrastructure.Service
 	
 	
 
-		public async Task<UserAccount> CreateAsync(UserAccount user)
+		public async Task<UserAccount> CreateAsync(AccountDto user)
 		{
 			 var  result = new AccountDto()
 			{
@@ -53,11 +53,12 @@ namespace Infrastructure.Service
 				CardNamber = user.CardNamber,
 				CardValidData = user.CardValidData,
 				TotalBalance = user.TotalBalance,
-				UserTransoctions = user.UserTransoctionids.Select(x => x.id).ToList(),
+			UserTransoctionids = user.UserTransoctionids.Select(x =>x).ToList(),
 			};
-
+		
+			 _dbcontext.Add(user);
 			await _dbcontext.SaveChangesAsync();
-			return result;
+			return  new() ;
 		}
 	}
 }

@@ -40,10 +40,11 @@ namespace Payment.Controllers
 		[HttpPost]
 		public async Task<TransactionDto> CreateAsync(TransactionDto user)
 		{
+
+			await _userTransactionService.CreateAysnc(user);
+			await   _serverDbcontext.SaveChangesAsync();
 		
-			await  _serverDbcontext.SaveChangesAsync();
-		
-				return  usertransactionEntity;
+				return  user;
 
 		}
 	}

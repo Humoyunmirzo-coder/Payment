@@ -19,12 +19,13 @@ namespace Infrastructure.Service
 		public UserTransactionService(ServerDbcontext dbcontext)
 		{
 			_dbcontext = dbcontext;
+			
 		}
 
-		public async Task<UserTransoction> CreateAysnc(UserTransoction account)
+		public async Task<UserTransoction> CreateAysnc(TransactionDto account)
 		{
-		
-			var usertransactionEntity = new TransactionDto()
+
+			UserTransoction usertransactionEntity = new UserTransoction()
 			{
 				Result = account.Result,
 				Amaunt = account.Amaunt,
@@ -32,25 +33,22 @@ namespace Infrastructure.Service
 				CardNumber = account.CardNumber,
 				UserAccountId = account.UserAccountId,
 				PaymentServise = account.PaymentServise,
-				Date = account.Date,
-				UserAccountids = account.UserAccounts.Select(x => x.Id).ToList(),
+			    Date = account.DateTime = DateTime.UtcNow,
+			//	UserAccounts = account.UserAccountids.Select (x=>x).ToList(),
+				
 
 			};
-			_dbcontext.SaveChanges();
+			_dbcontext.Add(usertransactionEntity);
+			 _dbcontext.SaveChanges();
 			return  (usertransactionEntity);
 
 
 		}
 
-		public Task<UserTransoction> CreateAysnc(TransactionDto transoction)
-		{
-			throw new NotImplementedException();
-		}
 
-		public Task<IEnumerable<UserTransoction>> GetAllAsync()
+		public async Task<IEnumerable<UserTransoction>> GetAllAsync()
 		{
-			_dbcontext.Transactions.AsNoTracking().AsEnumerable();
-			return Task.FromResult(Enumerable.Empty<UserTransoction>());
+			return   await  _dbcontext.Transactions.ToListAsync();
 		}
 
 		
@@ -61,9 +59,6 @@ namespace Infrastructure.Service
 			return entity;
 		}
 
-		async Task<IEnumerable<TransactionDto>> IUserTransactionService.GetAllAsync()
-		{
-			throw new NotImplementedException();
-		}
+	
 	}
 }

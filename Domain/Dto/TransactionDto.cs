@@ -17,8 +17,8 @@ namespace Domain.Dto
 		public string Amaunt { get; set; }
 		public string CardNumber { get; set; }
 		public string PaymentServise { get; set; }
-		public DateTime DateTime { get; set; } ;
- 
+		public DateTime DateTime { get; set; } 
+
 		public virtual  ICollection<int> UserAccountids { get; set; }
 	}
 }

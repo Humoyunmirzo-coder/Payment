@@ -34,7 +34,7 @@ namespace Infrastructure.Service
 				UserAccountId = account.UserAccountId,
 				PaymentServise = account.PaymentServise,
 			    Date = account.DateTime = DateTime.UtcNow,
-			//	UserAccounts = account.UserAccountids.Select (x=>x).ToList(),
+// UserAccounts = account.UserAccountids.Select (x=>x).ToList(),
 				
 
 			};
@@ -57,6 +57,10 @@ namespace Infrastructure.Service
 		{
 			UserTransoction? entity = await _dbcontext.Transactions.FindAsync(Id);
 			return entity;
+
+
+
+
 		}
 
 	
